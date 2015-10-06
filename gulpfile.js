@@ -9,10 +9,9 @@ var gulp      = require('gulp'),
   rename      = require('gulp-rename'),
   browser     = require('browser-sync').create();
 
-gulp.task('clean', function (cb) {
+gulp.task('clean', function () {
   clean([ './public' ]);
   clean([ './tmp' ]);
-  cb();
 });
 
 gulp.task('jade', function () {
@@ -52,24 +51,20 @@ gulp.task('static', function () {
     .pipe(gulp.dest('./public/fonts'));
 });
 
-gulp.task('build', ['clean', 'static', 'jade', 'es6', 'sass'], function(cb) {
-  cb();
-});
+gulp.task('build', ['clean', 'static', 'jade', 'es6', 'sass']);
 
-gulp.task('watch', ['build'], function (cb) {
+gulp.task('watch', ['build'], function () {
   gulp.watch('./src/index.jade', ['jade']);
-  gulp.watch([ './src/**/*.jsx' ], ['es6']);
+  gulp.watch([ './src/**/*.js' ], ['es6']);
   gulp.watch('./src/*.scss', ['sass']);
-  cb();
 });
 
-gulp.task('serve', ['watch'], function (cb) {
+gulp.task('serve', ['watch'], function () {
   browser.init({
     server: './public',
     logFileChanges: false,
     reloadOnRestart: true
   });
-  cb();
 });
 
 gulp.task('default', ['serve'], function () {
