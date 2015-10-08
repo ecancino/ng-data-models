@@ -1,54 +1,53 @@
-var _ = require('lodash');
+import _ from 'lodash';
 
-var Main = function(Post, Posts) {
-    var self = this;
-    self.posts = Posts;
-    self.editing = false;
-    self.post = new Post();
+class Main {
+    constructor(Post, Posts) {
+        this.posts = Posts;
+        this.post = new Post();
+        this.editing = false;
 
-    function update(post) {
-        var updated = Post.update({ oid: post._id['$oid'] }, post);
-        var idx = _.findIndex(self.posts, function(post) {
-            return post._id['$oid'] === updated._id['$oid']
-        });
-        self.posts[idx] = updated;
+        const update = (post) => {
+            let updated = Post.update({ oid: post._id['$oid'] }, post);
+            let idx = _.findIndex(this.posts, post => post._id['$oid'] === updated._id['$oid']);
+            this.posts[idx] = updated;
+        };
+
+        const create = (post) => {
+            post.$save().then(saved => this.posts.push(saved));
+        };
+
+        const save = (post) => {
+            if (post._id) {
+                update(post);
+            } else {
+                create(post);
+            }
+            reset();
+        };
+
+        const remove = (post) => {
+            post.oid = post._id['$oid'];
+            delete post._id;
+            Post.delete(post);
+            _.remove(this.posts, post);
+        };
+
+        const reset = () => {
+            this.post = new Post();
+            this.editing = false;
+        };
+
+        const active = (post) => {
+            this.post = Post.get({ oid: post._id['$oid'] }, post);
+            this.editing = true;
+        };
+
+        this.save = save;
+        this.reset = reset;
+        this.active = active;
+        this.remove = remove;
     }
-
-    function create(post) {
-        post.$save().then(function(saved) {
-            self.posts.push(saved);
-        });
-    }
-
-    self.save = function save(post) {
-        if (post._id) {
-            update(post);
-        } else {
-            create(post);
-        }
-        self.post = new Post();
-        self.editing = false;
-    };
-
-    self.delete = function(post) {
-        post.oid = post._id['$oid'];
-        delete post._id;
-        Post.delete(post);
-        _.remove(self.posts, post);
-    };
-
-    self.clear = function clear() {
-        self.post = new Post();
-        self.editing = false;
-    };
-
-    self.active = function active(post) {
-        self.post = Post.get({ oid: post._id['$oid'] }, post);
-        self.editing = true;
-    };
-
-    return self;
-};
+}
 
 Main.resolve = {
     Posts: function(Post) {
@@ -56,4 +55,4 @@ Main.resolve = {
     }
 };
 
-module.exports = Main;
+export default Main;

@@ -1,17 +1,17 @@
 'use strict';
 
-var angular = require('angular');
+import angular from 'angular';
 // angular modules
-require('angular-route');
-require('angular-resource');
+import 'angular-route';
+import 'angular-resource';
 
-var API = require('./config/api'),
-    Router = require('./config/router'),
-    Main = require('./controllers/main'),
-    Post = require('./factories/post');
+import API from './config/api';
+import Router from './config/router';
+import Main from './controllers/main';
+import Post from './factories/post';
 
 angular.module('app', ['ng', 'ngRoute', 'ngResource'])
+    .constant('API', API)
     .config(Router)
     .controller('Main', Main)
-    .constant('API', API)
-    .factory('Post', Post);
+    .service('Post', Post);

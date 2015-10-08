@@ -1,8 +1,7 @@
-var Main = require('../controllers/main');
+import Main from './../controllers/main';
 
-var Router = function($routeProvider, $httpProvider) {
-    $routeProvider
-    .when('/', {
+const Router = ($routeProvider, $httpProvider) => {
+    $routeProvider.when('/', {
         templateUrl: '/views/main.html',
         controller: 'Main',
         controllerAs: 'main',
@@ -15,4 +14,4 @@ var Router = function($routeProvider, $httpProvider) {
 
 Router.$inject = [ '$routeProvider', '$httpProvider' ];
 
-module.exports = Router;
+export default Router;
