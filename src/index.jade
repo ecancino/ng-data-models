@@ -1,5 +1,5 @@
 doctype html
-html(lang='en')
+html(lang='en', ng-app='app')
   head
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -18,10 +18,10 @@ html(lang='en')
             i(class='glyphicon glyphicon-user')
             | &nbsp; #{title}
 
-    section(id='main', class='container')
+    section(id='main', class='container', ng-view)
 
-    footer(class='footer container')
-      | Made with&nbsp;
-      a(href='http://gulpjs.com/', target='_blank') Gulp
+    footer(class='footer')
+      section(class='container') Made with&nbsp;
+        a(href='http://gulpjs.com/', target='_blank') Gulp
 
     script(src='js/app.min.js')

@@ -15,9 +15,14 @@ gulp.task('clean', function () {
 });
 
 gulp.task('jade', function () {
-  return gulp.src('./src/index.jade')
-    .pipe(jade({ data: { title: 'Gulp Boilerplate' } }))
+  gulp.src('./src/index.jade')
+    .pipe(jade({ data: { title: 'Posts' } }))
     .pipe(gulp.dest('./public'))
+    .pipe(browser.stream());
+
+  gulp.src('./src/views/*.jade')
+    .pipe(jade())
+    .pipe(gulp.dest('./public/views'))
     .pipe(browser.stream());
 });
 
@@ -31,7 +36,7 @@ gulp.task('es6', function () {
     .pipe(jshint())
     .pipe(gulp.dest('./tmp'))
     .pipe(rename({suffix: '.min', extname: '.js'}))
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest('./public/js'))
     .pipe(browser.stream());
 });
@@ -54,7 +59,7 @@ gulp.task('static', function () {
 gulp.task('build', ['clean', 'static', 'jade', 'es6', 'sass']);
 
 gulp.task('watch', ['build'], function () {
-  gulp.watch('./src/index.jade', ['jade']);
+  gulp.watch([ './src/**/*.jade' ], ['jade']);
   gulp.watch([ './src/**/*.js' ], ['es6']);
   gulp.watch('./src/*.scss', ['sass']);
 });

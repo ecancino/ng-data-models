@@ -1,0 +1,15 @@
+h1(ng-show='main.posts.length') Posts
+table(class='table table-striped', ng-show='main.posts.length')
+    thead 
+        th Title
+    tbody
+        tr(ng-repeat='post in main.posts')
+            td(ng-click='main.active(post)') {{post.title}}
+            td 
+                button(class='btn btn-danger', ng-click='main.delete(post)') Delete
+h3(ng-if='!main.editing') New Post
+h3(ng-if='main.editing') Edit Post
+form(ng-submit='main.save(main.post)')
+    input(ng-model='main.post.title')
+    button( type='submit', class='btn btn-primary') Submit
+button(ng-if='main.editing', class='btn btn-success', ng-click='main.clear()') New Post

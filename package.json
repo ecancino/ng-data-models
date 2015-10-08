@@ -1,10 +1,10 @@
 {
-  "name": "gulp-boilerplate",
+  "name": "ng-data-models",
   "version": "1.0.0",
-  "description": "Gulp Boilerplate",
+  "description": "Angular Data Models",
   "repository": {
     "type": "git",
-    "url": "https://github.com/treeskelt/gulp-boilerplate"
+    "url": "https://github.com/ecancino/ng-data-models"
   },
   "scripts": {
     "start": "gulp"
@@ -12,7 +12,11 @@
   "author": "Eduardo Cancino",
   "license": "ISC",
   "dependencies": {
-    "bootstrap-sass": "^3.3.5"
+    "angular": "1.4.7",
+    "angular-resource": "1.4.7",
+    "angular-route": "1.4.7",
+    "bootstrap-sass": "^3.3.5",
+    "lodash": "3.10.1"
   },
   "devDependencies": {
     "babelify": "^6.2.0",
