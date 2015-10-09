@@ -1,13 +1,14 @@
-h1(ng-show='main.posts.length') Posts
-table(class='table table-striped', ng-show='main.posts.length')
+h1(ng-show='main.posts.size') Posts
+table(class='table table-striped', ng-show='main.posts.size')
     thead 
         th(colspan='2') Title
     tbody
-        tr(ng-repeat='post in main.posts')
-            td(ng-click='main.active(post)') {{post.title}}
+        tr(ng-repeat='post in main.posts.toArray()')
+            td(ng-click='main.active($index)') {{post.title}}
             td(class='col-xs-1') 
-                button(class='close', ng-click='main.remove(post)') 
+                button(class='close', ng-click='main.remove($index)') 
                     span &times;
+hr 
 form(ng-submit='main.save(main.post)')
     label(for='post')
         span(ng-if='!main.editing') New Post
@@ -17,3 +18,4 @@ form(ng-submit='main.save(main.post)')
         span(class='input-group-btn')
             button(type='submit', class='btn btn-success') submit
             button(type='reset', class='btn btn-warning', ng-if='main.editing', ng-click='main.reset()') reset
+hr

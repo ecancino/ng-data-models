@@ -16,6 +16,7 @@
     "angular-resource": "1.4.7",
     "angular-route": "1.4.7",
     "bootstrap-sass": "^3.3.5",
+    "immutable": "3.7.5",
     "lodash": "3.10.1"
   },
   "devDependencies": {
