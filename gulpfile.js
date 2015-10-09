@@ -1,12 +1,16 @@
 var gulp      = require('gulp'),
   clean       = require('del'),
   jade        = require('gulp-jade'),
-  browserify  = require('gulp-browserify'),
+  browserify  = require('browserify'),
+  babelify    = require('babelify'),
   uglify      = require('gulp-uglify'),
-  jshint      = require('gulp-jshint'),
+  rename      = require('gulp-rename'),
+  stream      = require('vinyl-source-stream'),
+  buffer      = require('vinyl-buffer'),
+  utils       = require('gulp-util'),
+  sourcemaps  = require('gulp-sourcemaps'),
   sass        = require('gulp-sass'),
   minify      = require('gulp-minify-css'),
-  rename      = require('gulp-rename'),
   browser     = require('browser-sync').create();
 
 gulp.task('clean', function () {
@@ -18,27 +22,29 @@ gulp.task('jade', function () {
   gulp.src('./src/index.jade')
     .pipe(jade({ data: { title: 'Posts' } }))
     .pipe(gulp.dest('./public'))
-    .pipe(browser.stream());
+    .pipe(browser.stream({ once: true }));
 
   gulp.src('./src/views/*.jade')
     .pipe(jade())
     .pipe(gulp.dest('./public/views'))
-    .pipe(browser.stream());
+    .pipe(browser.stream({ once: true }));
 });
 
 gulp.task('es6', function () {
-  return gulp.src('./src/app.js')
-    .pipe(browserify({
-      extensions: [ '.js' ],
-      transform: [ 'babelify' ],
+  return browserify({
+      entries: './src/app.js',
+      transform: [ babelify ],
       debug: true
-    }))
-    .pipe(jshint())
-    .pipe(gulp.dest('./tmp'))
-    .pipe(rename({suffix: '.min', extname: '.js'}))
-    //.pipe(uglify())
+    })
+    .bundle()
+    .pipe(stream('app.min.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(uglify())
+    .on('error', utils.log)
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./public/js'))
-    .pipe(browser.stream());
+    .pipe(browser.stream({ once: true }));
 });
 
 gulp.task('sass', function () {
@@ -48,7 +54,7 @@ gulp.task('sass', function () {
     .pipe(rename({suffix: '.min', extname: '.css'}))
     .pipe(minify({keepSpecialComments: 0}))
     .pipe(gulp.dest('./public/css'))
-    .pipe(browser.stream());
+    .pipe(browser.stream({ once: true }));
 });
 
 gulp.task('static', function () {

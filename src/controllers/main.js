@@ -50,9 +50,11 @@ class Main {
 }
 
 Main.resolve = {
-    Posts: function(Post) {
+    Posts: ['Post', (Post) => {
         return Post.query().$promise;
-    }
+    }]
 };
+
+Main.$inject = [ 'Post', 'Posts' ];
 
 export default Main;

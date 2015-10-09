@@ -1,11 +1,11 @@
-import Main from './../controllers/main';
+import { resolve } from './../controllers/main';
 
 const Router = ($routeProvider, $httpProvider) => {
     $routeProvider.when('/', {
         templateUrl: '/views/main.html',
         controller: 'Main',
         controllerAs: 'main',
-        resolve: Main.resolve
+        resolve: resolve
     });
     $httpProvider.defaults.useXDomain = true;
     $httpProvider.defaults.headers['DNT'] = '1'

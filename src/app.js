@@ -1,7 +1,6 @@
 'use strict';
 
 import angular from 'angular';
-// angular modules
 import 'angular-route';
 import 'angular-resource';
 
