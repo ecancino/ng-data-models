@@ -40,8 +40,8 @@ gulp.task('es6', function () {
     .pipe(stream('app.min.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
-    //.pipe(uglify())
-    //.on('error', utils.log)
+    .pipe(uglify())
+    .on('error', utils.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./public/js'))
     .pipe(browser.stream({ once: true }));

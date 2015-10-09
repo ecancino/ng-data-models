@@ -2,7 +2,7 @@ import { resolve } from './../controllers/main';
 
 const Router = ($routeProvider, $httpProvider) => {
     $routeProvider.when('/', {
-        templateUrl: '/views/main.html',
+        templateUrl: 'views/main.html',
         controller: 'Main',
         controllerAs: 'main',
         resolve: resolve
