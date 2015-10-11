@@ -3,6 +3,7 @@
 import angular from 'angular';
 import 'angular-route';
 import 'angular-resource';
+import './app.scss';
 
 import API from './config/api';
 import Router from './config/router';

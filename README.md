@@ -1,4 +1,5 @@
 # Angular Data Models
 
-* npm install
-* gulp
+- npm install
+- gulp [serve]
+- gulp build

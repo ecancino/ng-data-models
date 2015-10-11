@@ -1,8 +1,9 @@
 import { resolve } from './../controllers/main';
+import template from './../views/main.jade';
 
 const Router = ($routeProvider, $httpProvider) => {
     $routeProvider.when('/', {
-        templateUrl: 'views/main.html',
+        template,
         controller: 'Main',
         controllerAs: 'main',
         resolve: resolve
