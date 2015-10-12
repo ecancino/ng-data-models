@@ -30,7 +30,7 @@ gulp.task('build', ['clean', 'static', 'jade'], function() {
     }));
     config.devtool = 'source-map';
     webpack(config, function(err, stats) {
-        if(err) throw new gutil.PluginError('webpack', err);
+        if(err) throw new util.PluginError('webpack', err);
         util.log('[webpack]', stats.toString({
             watch: true,
             colors: true,
@@ -45,7 +45,7 @@ gulp.task('serve', ['clean', 'static', 'jade'], function() {
         hot: true
     }).listen(8080, 'localhost', function(err) {
         if (err) throw new util.PluginError('webpack-dev-server', err);
-        util.log('[server]', 'http://localhost:8080/webpack-dev-server');
+        util.log('[server]', 'http://localhost:8080/');
     });
 });
 

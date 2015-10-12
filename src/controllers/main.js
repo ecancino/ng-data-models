@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { List } from 'immutable';
 
 class Main {
@@ -31,11 +30,19 @@ class Main {
         };
 
         const remove = (index) => {
+            console.log(index);
             var post = this.posts.get(index);
             post.oid = post._id['$oid'];
             delete post._id;
             Post.delete(post);
             this.posts = this.posts.delete(index);
+        };
+
+        const clear = () => {
+            const length = this.posts.size;
+            for (var i = 0; i < length; i++) {
+                remove(0);
+            }
         };
 
         const reset = () => {
@@ -49,6 +56,7 @@ class Main {
         };
 
         this.save = save;
+        this.clear = clear;
         this.reset = reset;
         this.active = active;
         this.remove = remove;

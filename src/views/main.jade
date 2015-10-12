@@ -3,7 +3,7 @@ table(class='table table-striped', ng-show='main.posts.size')
     thead 
         th(colspan='2') Title
     tbody
-        tr(ng-repeat='post in main.posts.toArray()')
+        tr(ng-repeat='post in main.posts.toArray() track by $index')
             td(ng-click='main.active($index)') {{post.title}}
             td(class='col-xs-1') 
                 button(class='close', ng-click='main.remove($index)') 
@@ -16,6 +16,7 @@ form(ng-submit='main.save(main.post)')
     section(class='input-group')
         input(id='post', class='form-control', placeholder='Post Title', ng-model='main.post.title')
         span(class='input-group-btn')
-            button(type='submit', class='btn btn-success') submit
-            button(type='reset', class='btn btn-warning', ng-if='main.editing', ng-click='main.reset()') reset
+            button(type='submit', id='submit', class='btn btn-success') submit
+            button(type='button', id='clear', class='btn btn-danger', ng-click='main.clear()') clear
+            button(type='reset', id='reset', class='btn btn-warning', ng-if='main.editing', ng-click='main.reset()') reset
 hr

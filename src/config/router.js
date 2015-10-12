@@ -1,4 +1,4 @@
-import { resolve } from './../controllers/main';
+import Main from './../controllers/main';
 import template from './../views/main.jade';
 
 const Router = ($routeProvider, $httpProvider) => {
@@ -6,7 +6,7 @@ const Router = ($routeProvider, $httpProvider) => {
         template,
         controller: 'Main',
         controllerAs: 'main',
-        resolve: resolve
+        resolve: Main.resolve
     });
     $httpProvider.defaults.useXDomain = true;
     $httpProvider.defaults.headers['DNT'] = '1'

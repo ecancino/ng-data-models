@@ -7,7 +7,8 @@
         "url": "https://github.com/ecancino/ng-data-models"
     },
     "scripts": {
-        "start": "gulp"
+        "start": "gulp",
+        "test": "protractor test/protractor.js"
     },
     "author": "Eduardo Cancino",
     "license": "ISC",
@@ -16,8 +17,7 @@
         "angular-resource": "1.4.7",
         "angular-route": "1.4.7",
         "bootstrap-sass": "^3.3.5",
-        "immutable": "3.7.5",
-        "lodash": "3.10.1"
+        "immutable": "3.7.5"
     },
     "devDependencies": {
         "babel-core": "5.8.25",
@@ -48,7 +48,6 @@
                     { "name": "jade", "link": "http://jade-lang.com/" },
                     { "name": "angular", "link": "https://angularjs.org/" },
                     { "name": "immutable", "link": "http://facebook.github.io/immutable-js/" },
-                    { "name": "lodash", "link": "https://lodash.com/" },
                     { "name": "bootstrap", "link": "http://getbootstrap.com/" }
                 ]
             }
