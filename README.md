@@ -1,5 +1,6 @@
 # Angular Data Models
 
-- npm install
-- gulp [serve]
-- gulp build
+- npm start - Installs dependencies and webdriver for protractor
+- npm serve - Starts Webpack Dev Server
+- npm build - Creates public folder
+- npm test  - Runs protractor tests
