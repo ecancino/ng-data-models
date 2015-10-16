@@ -1,56 +1,80 @@
 {
-    "name": "ng-data-models",
-    "version": "1.0.0",
-    "description": "Angular Data Models",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/ecancino/ng-data-models"
-    },
-    "scripts": {
-        "start": "gulp",
-        "test": "protractor test/protractor.js"
-    },
-    "author": "Eduardo Cancino",
-    "license": "ISC",
-    "dependencies": {
-        "angular": "1.4.7",
-        "angular-resource": "1.4.7",
-        "angular-route": "1.4.7",
-        "bootstrap-sass": "^3.3.5",
-        "immutable": "3.7.5"
-    },
-    "devDependencies": {
-        "babel-core": "5.8.25",
-        "babel-loader": "5.3.2",
-        "css-loader": "0.19.0",
-        "del": "2.0.2",
-        "file-loader": "0.8.4",
-        "gulp": "3.9.0",
-        "gulp-jade": "1.1.0",
-        "gulp-util": "3.0.6",
-        "jade-loader": "0.7.1",
-        "ng-annotate-loader": "0.0.10",
-        "node-sass": "3.3.3",
-        "sass-loader": "3.0.0",
-        "style-loader": "0.12.4",
-        "url-loader": "0.5.6",
-        "webpack": "1.12.2",
-        "webpack-dev-server": "1.12.0"
-    },
-    "pages": {
-        "index": {
-            "data": {
-                "title": "Posts",
-                "madewith": [
-                    { "name": "webpack", "link": "http://webpack.github.io/" },
-                    { "name": "gulp", "link": "http://gulpjs.com" },
-                    { "name": "babel", "link": "https://babeljs.io/" },
-                    { "name": "jade", "link": "http://jade-lang.com/" },
-                    { "name": "angular", "link": "https://angularjs.org/" },
-                    { "name": "immutable", "link": "http://facebook.github.io/immutable-js/" },
-                    { "name": "bootstrap", "link": "http://getbootstrap.com/" }
-                ]
-            }
-        }
+  "name": "ng-data-models",
+  "version": "1.0.0",
+  "description": "Angular Data Models",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecancino/ng-data-models"
+  },
+  "scripts": {
+    "start": "npm install && ./node_modules/protractor/bin/webdriver-manager update",
+    "serve": "./node_modules/.bin/gulp serve",
+    "build": "./node_modules/.bin/gulp build",
+    "test": "./node_modules/.bin/protractor test/protractor.js"
+  },
+  "author": "Eduardo Cancino",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "1.4.7",
+    "angular-resource": "1.4.7",
+    "angular-route": "1.4.7",
+    "bootstrap-sass": "^3.3.5",
+    "immutable": "3.7.5"
+  },
+  "devDependencies": {
+    "babel-core": "5.8.25",
+    "babel-loader": "5.3.2",
+    "css-loader": "0.19.0",
+    "del": "2.0.2",
+    "file-loader": "0.8.4",
+    "gulp": "3.9.0",
+    "gulp-jade": "1.1.0",
+    "gulp-util": "3.0.6",
+    "jade-loader": "0.7.1",
+    "ng-annotate-loader": "0.0.10",
+    "node-sass": "3.3.3",
+    "protractor": "^2.5.1",
+    "sass-loader": "3.0.0",
+    "style-loader": "0.12.4",
+    "url-loader": "0.5.6",
+    "webpack": "1.12.2",
+    "webpack-dev-server": "1.12.0"
+  },
+  "pages": {
+    "index": {
+      "data": {
+        "title": "Posts",
+        "madewith": [
+          {
+            "name": "webpack",
+            "link": "http://webpack.github.io/"
+          },
+          {
+            "name": "gulp",
+            "link": "http://gulpjs.com"
+          },
+          {
+            "name": "babel",
+            "link": "https://babeljs.io/"
+          },
+          {
+            "name": "jade",
+            "link": "http://jade-lang.com/"
+          },
+          {
+            "name": "angular",
+            "link": "https://angularjs.org/"
+          },
+          {
+            "name": "immutable",
+            "link": "http://facebook.github.io/immutable-js/"
+          },
+          {
+            "name": "bootstrap",
+            "link": "http://getbootstrap.com/"
+          }
+        ]
+      }
     }
+  }
 }
