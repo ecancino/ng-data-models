@@ -1,6 +1,6 @@
 var gulp    = require('gulp'),
     util    = require('gulp-util'),
-    jade    = require('gulp-jade'),
+    pug    = require('gulp-pug'),
     del     = require('del'),
     webpack = require('webpack'),
     server  = require('webpack-dev-server'),
@@ -12,9 +12,9 @@ gulp.task('clean', function() {
     del([ './tmp' ]);
 });
 
-gulp.task('jade', function() {
-    return gulp.src('./src/index.jade')
-        .pipe(jade(pages.index))
+gulp.task('pug', function() {
+    return gulp.src('./src/index.pug')
+        .pipe(pug(pages.index))
         .pipe(gulp.dest('./public'));
 });
 
@@ -23,7 +23,9 @@ gulp.task('static', function() {
         .pipe(gulp.dest('./public'));
 });
 
-gulp.task('build', ['clean', 'static', 'jade'], function() {
+gulp.task('assets', ['clean', 'static', 'pug']);
+
+gulp.task('build', ['assets'], function() {
     config.plugins.push(new webpack.optimize.UglifyJsPlugin({
         output: { comments: false },
         compress: { warnings: false }
@@ -39,7 +41,7 @@ gulp.task('build', ['clean', 'static', 'jade'], function() {
     });
 });
 
-gulp.task('serve', ['clean', 'static', 'jade'], function() {
+gulp.task('serve', ['assets'], function() {
     return new server(webpack(config), {
         contentBase: __dirname + '/public',
         hot: true
